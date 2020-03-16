@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Form, Input } from '@rocketseat/unform';
+import { Form } from '@rocketseat/unform';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
@@ -9,7 +9,13 @@ import ButtonBack from '~/components/ButtonBack';
 import ButtonSave from '~/components/ButtonSave';
 import api from '~/services/api';
 import history from '~/services/history';
-import { Title, FlexRow, FormContent, Buttons } from '~/styles/components';
+import {
+  Title,
+  FlexRow,
+  FormContent,
+  Buttons,
+  Input,
+} from '~/styles/components';
 
 import { Container, FormGroup, FormGroupItem } from './styles';
 
@@ -25,16 +31,16 @@ const schema = Yup.object().shape({
     .required('CEP é obrigatório'),
 });
 
-export default function Deliveryman() {
+export default function Recipient() {
   const { id } = useParams();
 
-  const [deliveryman, setDeliveryman] = useState(null);
+  const [recipient, setRecipient] = useState(null);
 
   useEffect(() => {
     async function load() {
       if (id) {
         const { data } = await api.get(`/recipients/${id}`);
-        setDeliveryman(data);
+        setRecipient(data);
       }
     }
 
@@ -57,7 +63,7 @@ export default function Deliveryman() {
   }
   return (
     <Container>
-      <Form schema={schema} initialData={deliveryman} onSubmit={handleSubmit}>
+      <Form schema={schema} initialData={recipient} onSubmit={handleSubmit}>
         <FlexRow>
           <Title>Cadastro de entregadores</Title>
           <Buttons>

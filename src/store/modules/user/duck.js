@@ -4,7 +4,7 @@ import { handleActions } from 'redux-actions';
 import { SIGN_IN_SUCCESS, SIGN_OUT } from '../auth/duck';
 
 const defaultState = {
-  profile: null
+  profile: null,
 };
 
 const reducer = handleActions(
@@ -13,7 +13,7 @@ const reducer = handleActions(
       produce(state, draft => {
         draft.profile = payload.user;
       }),
-    [SIGN_OUT]: () => defaultState
+    [SIGN_OUT]: () => defaultState,
   },
   defaultState
 );

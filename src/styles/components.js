@@ -1,3 +1,4 @@
+import { Input as UnformInput } from '@rocketseat/unform';
 import styled from 'styled-components';
 
 import colors from './colors';
@@ -85,20 +86,20 @@ export const FormContent = styled.div`
     padding: 10px 0;
   }
 
-  input {
-    border: 1px solid ${colors.gray};
-    border-radius: 4px;
-    height: 40px;
-    padding: 0 20px;
-    color: ${colors.text};
-  }
-
   span {
     color: ${colors.danger};
     align-self: flex-start;
     margin: 5px 0 10px 0;
     font-weight: bold;
   }
+`;
+
+export const Input = styled(UnformInput)`
+  border: 1px solid ${colors.gray};
+  border-radius: 4px;
+  height: 40px;
+  padding: 0 20px;
+  color: ${colors.text};
 `;
 
 export const Buttons = styled.div`
@@ -110,4 +111,16 @@ export const Buttons = styled.div`
       margin-right: 10px;
     }
   }
+`;
+
+export const FormGroup = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const FormGroupItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: ${({ width }) => width || '100%'};
 `;

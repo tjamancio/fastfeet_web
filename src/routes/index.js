@@ -2,9 +2,10 @@ import React from 'react';
 
 import { Switch } from 'react-router-dom';
 
+import Deliveries from '~/pages/Deliveries';
+import Delivery from '~/pages/Delivery';
 import Deliveryman from '~/pages/Deliveryman';
 import Deliverymen from '~/pages/Deliverymen';
-import Order from '~/pages/Order';
 import Problems from '~/pages/Problems';
 import Recipient from '~/pages/Recipient';
 import Recipients from '~/pages/Recipients';
@@ -16,7 +17,9 @@ const Routes = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
 
-    <Route path="/orders" exact isPrivate component={Order} />
+    <Route path="/orders" exact isPrivate component={Deliveries} />
+    <Route path="/orders/new" exact isPrivate component={Delivery} />
+    <Route path="/orders/:id" exact isPrivate component={Delivery} />
 
     <Route path="/deliverymen" exact isPrivate component={Deliverymen} />
     <Route path="/deliverymen/new" exact isPrivate component={Deliveryman} />

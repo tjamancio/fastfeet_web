@@ -3,20 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
-import ButtonAdd from '~/components/ButtonAdd';
 import ContextMenu from '~/components/ContextMenu';
 import MenuItem from '~/components/ContextMenu/MenuItem';
 import Modal from '~/components/Modal';
 import Search from '~/components/Search';
 import api from '~/services/api';
-import history from '~/services/history';
 import colors from '~/styles/colors';
 import { Title, FlexRow, Table } from '~/styles/components';
 
 import { Container } from './styles';
 import Viewer from './Viewer';
 
-export default function Deliveryman() {
+export default function Problems() {
   const [problems, setProblems] = useState([]);
   const [selected, setSelected] = useState(null);
   const [viewerVisible, setViewerVisible] = useState(false);

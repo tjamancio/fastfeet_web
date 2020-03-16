@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Form, Input } from '@rocketseat/unform';
+import { Form } from '@rocketseat/unform';
 import Dropzone from 'react-dropzone';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -11,9 +11,15 @@ import ButtonBack from '~/components/ButtonBack';
 import ButtonSave from '~/components/ButtonSave';
 import api from '~/services/api';
 import history from '~/services/history';
-import { Title, FlexRow } from '~/styles/components';
+import {
+  Title,
+  FlexRow,
+  FormContent,
+  Buttons,
+  Input,
+} from '~/styles/components';
 
-import { Container, Buttons, DropzoneContent, FormContent } from './styles';
+import { Container, DropzoneContent } from './styles';
 
 const schema = Yup.object().shape({
   email: Yup.string()
