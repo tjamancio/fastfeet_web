@@ -11,5 +11,5 @@ export default {
   grayDark: '#ccc',
   white: '#fff',
   blue: '#4d85ee',
-  danger: '#f64c75'
+  danger: '#f64c75',
 };

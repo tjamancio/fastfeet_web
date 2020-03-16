@@ -49,10 +49,9 @@ export default function Deliveryman() {
     if (resp) {
       try {
         await api.delete(`/delivery-problems/${id}/cancel-delivery`);
-        toast.success('Encomenda excluida com sucesso!');
-        setProblems(problems.filter(problem => problem.id !== id));
+        toast.success('Encomenda cancelada com sucesso!');
       } catch (err) {
-        toast.error('Erro ao excluir encomenda');
+        toast.error('Erro ao cancelar encomenda');
       }
     }
   }
