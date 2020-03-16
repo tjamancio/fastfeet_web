@@ -1,75 +1,105 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { MdEdit, MdDelete } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
+import { Form, Input } from '@rocketseat/unform';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 
-import ButtonAdd from '~/components/ButtonAdd';
-import ContextMenu from '~/components/ContextMenu';
-import MenuItem from '~/components/ContextMenu/MenuItem';
-import Search from '~/components/Search';
-import { searchRecipientsRequest } from '~/store/modules/recipient/duck';
-import colors from '~/styles/colors';
-import { Title, FlexRow, Table } from '~/styles/components';
+import ButtonBack from '~/components/ButtonBack';
+import ButtonSave from '~/components/ButtonSave';
+import api from '~/services/api';
+import history from '~/services/history';
+import { Title, FlexRow, FormContent, Buttons } from '~/styles/components';
 
-// import { Container } from './styles';
+import { Container, FormGroup, FormGroupItem } from './styles';
 
-export default function Recipient() {
-  const dispatch = useDispatch();
-  const deliverymen = useSelector(state => state.recipient.data);
+const schema = Yup.object().shape({
+  name: Yup.string().required('Nome é obrigatório'),
+  street: Yup.string().required('Rua é obrigatório'),
+  number: Yup.string().required('Número é obrigatório'),
+  complement: Yup.string().required('Complemento é obrigatório'),
+  city: Yup.string().required('Cidade é obrigatório'),
+  state: Yup.string().required('Estado é obrigatório'),
+  postalcode: Yup.string()
+    .length(8, 'CEP deve ter 8 dígitos')
+    .required('CEP é obrigatório'),
+});
+
+export default function Deliveryman() {
+  const { id } = useParams();
+
+  const [deliveryman, setDeliveryman] = useState(null);
 
   useEffect(() => {
-    dispatch(searchRecipientsRequest(''));
-    return () => { };
-  }, [dispatch]);
+    async function load() {
+      if (id) {
+        const { data } = await api.get(`/recipients/${id}`);
+        setDeliveryman(data);
+      }
+    }
 
-  function handleSearchChange(event) {
-    dispatch(searchRecipientsRequest(event.target.value));
+    load();
+  }, [id]);
+
+  async function handleSubmit(data) {
+    try {
+      if (id) {
+        await api.put(`/recipients/${id}`, data);
+        toast.success('Destinatário atualizado com sucesso!');
+      } else {
+        await api.post('/recipients', data);
+        toast.success('Destinatário cadastrado com sucesso!');
+      }
+      history.push('/recipients');
+    } catch (err) {
+      toast.error('Erro ao salvar Destinatário');
+    }
   }
-
   return (
-    <>
-      <Title>Gerenciando destinatários</Title>
-      <FlexRow>
-        <Search
-          placeholder="Buscar por destinatários"
-          onChange={handleSearchChange}
-        />
-        <ButtonAdd />
-      </FlexRow>
+    <Container>
+      <Form schema={schema} initialData={deliveryman} onSubmit={handleSubmit}>
+        <FlexRow>
+          <Title>Cadastro de entregadores</Title>
+          <Buttons>
+            <ButtonBack />
+            <ButtonSave />
+          </Buttons>
+        </FlexRow>
+        <FormContent>
+          <label>Nome</label>
+          <Input name="name" />
 
-      <Table cellPadding={0} cellSpacing={0}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {deliverymen.map(recipient => (
-            <tr key={recipient.id}>
-              <td>#{recipient.id}</td>
-              <td>{recipient.name}</td>
-              <td>
-                {`${recipient.street}, ${recipient.number}, ${recipient.city} - ${recipient.state}`}
-              </td>
-              <td>
-                <ContextMenu>
-                  <MenuItem>
-                    <MdEdit color={colors.red} size={15} />
-                    <label>Editar</label>
-                  </MenuItem>
-                  <MenuItem>
-                    <MdDelete color={colors.red} size={15} />
-                    <label>Excluir</label>
-                  </MenuItem>
-                </ContextMenu>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </>
+          <FormGroup>
+            <FormGroupItem width="50%">
+              <label>Rua</label>
+              <Input name="street" />
+            </FormGroupItem>
+            <FormGroupItem width="20%">
+              <label>Número</label>
+              <Input name="number" />
+            </FormGroupItem>
+            <FormGroupItem width="20%">
+              <label>Complemento</label>
+              <Input name="complement" />
+            </FormGroupItem>
+          </FormGroup>
+
+          <FormGroup>
+            <FormGroupItem width="30%">
+              <label>Cidade</label>
+              <Input name="city" />
+            </FormGroupItem>
+            <FormGroupItem width="30%">
+              <label>Estado</label>
+              <Input name="state" />
+            </FormGroupItem>
+            <FormGroupItem width="30%">
+              <label>CEP</label>
+              <Input name="postalcode" />
+            </FormGroupItem>
+          </FormGroup>
+        </FormContent>
+      </Form>
+    </Container>
   );
 }

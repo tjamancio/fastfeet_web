@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
 import ButtonAdd from '~/components/ButtonAdd';
 import ContextMenu from '~/components/ContextMenu';
 import MenuItemDelete from '~/components/ContextMenu/MenuItem/Delete';
@@ -9,25 +7,29 @@ import MenuItemEdit from '~/components/ContextMenu/MenuItem/Edit';
 import MenuItemViewer from '~/components/ContextMenu/MenuItem/Viewer';
 import Modal from '~/components/Modal';
 import Search from '~/components/Search';
-import { searchDeliveriesRequest } from '~/store/modules/delivery/duck';
+import api from '~/services/api';
 import { Title, FlexRow, Table } from '~/styles/components';
 
 import { Status } from './styles';
 import Viewer from './Viewer';
 
 export default function Order() {
-  const dispatch = useDispatch();
-  const deliveries = useSelector(state => state.delivery.data);
-  const [viewerVisible, setViewerVisible] = useState(true);
+  const [deliveries, setDeliveries] = useState([]);
+  const [viewerVisible, setViewerVisible] = useState(false);
   const [selected, setSelected] = useState(null);
 
+  async function load(query = '') {
+    const { data } = await api.get(`/deliveries?q=${query}`);
+    setDeliveries(data);
+  }
+
   useEffect(() => {
-    dispatch(searchDeliveriesRequest(''));
+    load();
     return () => { };
-  }, [dispatch]);
+  }, []);
 
   function handleSearchChange(event) {
-    dispatch(searchDeliveriesRequest(event.target.value));
+    load(event.target.value);
   }
 
   function handleModalCloseClick() {
@@ -35,8 +37,8 @@ export default function Order() {
   }
 
   function handleViewerClick(delivery) {
-    setViewerVisible(true);
     setSelected(delivery);
+    setViewerVisible(true);
   }
 
   function getStatus(delivery) {

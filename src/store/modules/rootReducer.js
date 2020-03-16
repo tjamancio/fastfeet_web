@@ -12,7 +12,7 @@ const reducers = combineReducers({
   user,
   delivery,
   deliveryman,
-  recipient,
+  recipient
 });
 
 export default reducers;

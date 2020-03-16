@@ -21,17 +21,26 @@ export default function Header() {
         <nav>
           <img src={logo} alt="Fastfeet" title="Fastfeet" />
           <Menu>
-            <MenuItem to="/orders" activeroute={pathname === '/orders'}>
+            <MenuItem to="/orders" activeroute={pathname.startsWith('/orders')}>
               ENCOMENDAS
             </MenuItem>
             <MenuItem
               to="/deliverymen"
-              activeroute={pathname === '/deliverymen'}
+              activeroute={pathname.startsWith('/deliverymen')}
             >
               ENTREGADORES
             </MenuItem>
-            <MenuItem to="/recipients" activeroute={pathname === '/recipients'}>
+            <MenuItem
+              to="/recipients"
+              activeroute={pathname.startsWith('/recipients')}
+            >
               DESTINATÁRIOS
+            </MenuItem>
+            <MenuItem
+              to="/problems"
+              activeroute={pathname.startsWith('/problems')}
+            >
+              PROBLEMAS
             </MenuItem>
           </Menu>
         </nav>

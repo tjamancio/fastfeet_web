@@ -29,7 +29,7 @@ export const Menu = styled.div`
   left: calc(50% - 75px);
   right: 0;
   padding: 10px;
-  min-width: 150px;
+  width: ${({ width }) => width};
   text-align: left;
   border: 1px solid ${colors.gray};
   background: ${colors.white};

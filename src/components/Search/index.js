@@ -20,5 +20,5 @@ export default function Search({ placeholder, onChange }) {
 
 Search.propTypes = {
   placeholder: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired
 };

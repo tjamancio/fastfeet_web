@@ -8,7 +8,7 @@ import {
   signInSuccess,
   SIGN_IN_REQUEST,
   signInFailure,
-  SIGN_OUT,
+  SIGN_OUT
 } from './duck';
 
 function* signin({ payload }) {
@@ -44,5 +44,5 @@ export function signOut() {
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest(SIGN_IN_REQUEST, signin),
-  takeLatest(SIGN_OUT, signOut),
+  takeLatest(SIGN_OUT, signOut)
 ]);

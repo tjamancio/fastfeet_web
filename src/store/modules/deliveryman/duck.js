@@ -12,7 +12,7 @@ export const searchDeliverymenSuccess = createAction(
 );
 
 const defaultState = {
-  data: [],
+  data: []
 };
 
 const reducer = handleActions(
@@ -20,7 +20,7 @@ const reducer = handleActions(
     [SEARCH_DELIVERYMEN_SUCCESS]: (state, { payload }) =>
       produce(state, draft => {
         draft.data = payload;
-      }),
+      })
   },
   defaultState
 );

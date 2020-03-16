@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Container, Menu } from './styles';
 
-export default function ContextMenu({ children }) {
+export default function ContextMenu({ width, children }) {
   const [visible, setVisible] = useState(false);
 
   function handleToggleVisible() {
@@ -21,11 +21,18 @@ export default function ContextMenu({ children }) {
         <span />
         <span />
       </button>
-      <Menu visible={visible}>{children}</Menu>
+      <Menu width={width} visible={visible}>
+        {children}
+      </Menu>
     </Container>
   );
 }
 
 ContextMenu.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  width: PropTypes.string,
+};
+
+ContextMenu.defaultProps = {
+  width: '150px',
 };

@@ -4,7 +4,7 @@ import { createAction, handleActions } from 'redux-actions';
 const defaultState = {
   token: null,
   signed: false,
-  loading: false,
+  loading: false
 };
 
 export const SIGN_IN_REQUEST = '@AUTH/SIGN_IN_REQUEST';
@@ -18,7 +18,7 @@ export const signInRequest = createAction(
 );
 export const signInSuccess = createAction(SIGN_IN_SUCCESS, (token, user) => ({
   token,
-  user,
+  user
 }));
 export const signInFailure = createAction(SIGN_IN_FAILURE);
 export const signOut = createAction(SIGN_OUT);
@@ -39,7 +39,7 @@ const reducer = handleActions(
       produce(state, draft => {
         draft.loading = false;
       }),
-    [SIGN_OUT]: () => defaultState,
+    [SIGN_OUT]: () => defaultState
   },
   defaultState
 );

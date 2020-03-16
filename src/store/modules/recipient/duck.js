@@ -8,7 +8,7 @@ export const searchRecipientsRequest = createAction(SEARCH_RECIPIENTS_REQUEST);
 export const searchRecipientsSuccess = createAction(SEARCH_RECIPIENTS_SUCCESS);
 
 const defaultState = {
-  data: [],
+  data: []
 };
 
 const reducer = handleActions(
@@ -16,7 +16,7 @@ const reducer = handleActions(
     [SEARCH_RECIPIENTS_SUCCESS]: (state, { payload }) =>
       produce(state, draft => {
         draft.data = payload;
-      }),
+      })
   },
   defaultState
 );

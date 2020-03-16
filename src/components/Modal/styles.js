@@ -19,4 +19,6 @@ export const Content = styled.div`
   border: 1px solid ${colors.gray};
   border-radius: 4px;
   padding: 20px;
+  text-align: left;
+  min-width: 450px;
 `;
