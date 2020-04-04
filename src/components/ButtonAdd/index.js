@@ -17,5 +17,5 @@ export default function ButtonAdd({ onClick }) {
 }
 
 ButtonAdd.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };

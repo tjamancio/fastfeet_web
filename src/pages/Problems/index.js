@@ -26,7 +26,7 @@ export default function Problems() {
 
   useEffect(() => {
     load('');
-    return () => { };
+    return () => {};
   }, []);
 
   function handleSearchChange(event) {

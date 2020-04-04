@@ -23,7 +23,7 @@ export default function Recipients() {
 
   useEffect(() => {
     load();
-    return () => { };
+    return () => {};
   }, []);
 
   function handleSearchChange(event) {

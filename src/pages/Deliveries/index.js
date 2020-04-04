@@ -28,7 +28,7 @@ export default function Deliveries() {
 
   useEffect(() => {
     load();
-    return () => { };
+    return () => {};
   }, []);
 
   function handleSearchChange(event) {

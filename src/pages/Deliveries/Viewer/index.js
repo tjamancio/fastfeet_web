@@ -38,6 +38,7 @@ export default function Viewer({ delivery }) {
       </Dates>
       <Signature>
         <strong>Assinatura do destinatário</strong>
+        <img src={delivery.signature.url} alt="Assinatura" />
       </Signature>
     </Container>
   );
@@ -51,6 +52,9 @@ Viewer.propTypes = {
       state: PropTypes.string,
       city: PropTypes.string,
       postalcode: PropTypes.string,
+    }),
+    signature: PropTypes.shape({
+      url: PropTypes.string,
     }),
     start_date: PropTypes.string,
     end_date: PropTypes.string,

@@ -23,4 +23,15 @@ export const Dates = styled.div`
   }
 `;
 
-export const Signature = styled.div``;
+export const Signature = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    padding-bottom: 5px;
+  }
+
+  img {
+    max-height: 150px;
+  }
+`;

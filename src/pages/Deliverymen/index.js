@@ -24,7 +24,7 @@ export default function Deliveryman() {
 
   useEffect(() => {
     load('');
-    return () => { };
+    return () => {};
   }, []);
 
   function handleSearchChange(event) {

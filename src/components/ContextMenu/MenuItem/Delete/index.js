@@ -17,5 +17,5 @@ export default function Delete({ onClick }) {
 }
 
 Delete.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };

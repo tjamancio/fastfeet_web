@@ -17,5 +17,5 @@ export default function Edit({ onClick }) {
 }
 
 Edit.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
