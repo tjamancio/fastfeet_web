@@ -36,10 +36,12 @@ export default function Viewer({ delivery }) {
             format(parseISO(delivery.end_date), 'dd/MM/yyyy')}
         </div>
       </Dates>
-      <Signature>
-        <strong>Assinatura do destinatário</strong>
-        <img src={delivery.signature.url} alt="Assinatura" />
-      </Signature>
+      {delivery.signature && (
+        <Signature>
+          <strong>Assinatura do destinatário</strong>
+          <img src={delivery.signature.url} alt="Assinatura" />
+        </Signature>
+      )}
     </Container>
   );
 }
